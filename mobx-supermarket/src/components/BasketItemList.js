@@ -5,9 +5,7 @@ import { inject, observer } from 'mobx-react';
 const BasketItemList = ({ items, total, onTake }) => {
   const itemList = items.map(item => (
     <BasketItem
-      name={item.name}
-      price={item.price}
-      count={item.count}
+      item={item}
       key={item.name}
       onTake={onTake}
     />
@@ -15,10 +13,6 @@ const BasketItemList = ({ items, total, onTake }) => {
   return (
     <div>
       {itemList}
-      <hr />
-      <p>
-        <b>총합: </b> {total}원
-      </p>
     </div>
   );
 };
