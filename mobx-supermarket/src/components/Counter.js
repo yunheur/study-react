@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
 
-@inject('counter')
-@observer
 class Counter extends Component {
   render() {
-    const { counter } = this.props;
+    const { number, increase, decrease } = this.props;
     return (
       <div>
-        <h1>{counter.number}</h1>
-        <button onClick={counter.increase}>+1</button>
-        <button onClick={counter.decrease}>-1</button>
+        <h1>{number}</h1>
+        <button onClick={increase}>+1</button>
+        <button onClick={decrease}>-1</button>
       </div>
     );
   }
 }
 
-export default Counter;
+export default inject(({ counter }) => ({
+  number: counter.number,
+  increase: counter.increase,
+  decrease: counter.decrease,
+}))(observer(Counter));
